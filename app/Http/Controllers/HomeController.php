@@ -7,6 +7,7 @@ use App\Models\Pegawai;
 use App\Models\Bidang;
 use App\Models\Tamu;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 
 class HomeController extends Controller
@@ -28,7 +29,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('user.home');
+        $user = Auth::user()->id;
+        $today = Tamu::whereDate('jadwal_temu', Carbon::now()->format('Y-m-d'))->where('user_id', $user)->count();
+        $total = Tamu::where('user_id', $user)->count();
+        return view('user.home', compact('today', 'total'));
     }
     public function admin(){
         
@@ -37,9 +41,11 @@ class HomeController extends Controller
         $belum = Tamu::where('status', 'Belum')->count();
         $sudah = Tamu::where('status', 'Sudah')->count();
         $batal = Tamu::where('status', 'Batal')->count();
-            return view('admin.home', compact('today','belum', 'sudah', 'batal'));
-            // return ;
-        return view('admin.home');
+        $paginate = Tamu::orderBy('jadwal_temu', 'asc')->paginate(5);
+            $jadwal = Tamu::join('pegawai', 'pegawai.id', '=', 'jadwal.pegawai_id')
+                ->whereDate('jadwal_temu', Carbon::now()->format('Y-m-d'))
+                ->get(['jadwal.*', 'pegawai.nama']);
+            return view('admin.home', compact('jadwal', 'paginate','today','belum', 'sudah', 'batal'));
     }
     
 }

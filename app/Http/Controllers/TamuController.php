@@ -126,7 +126,7 @@ class TamuController extends Controller
         $user = Auth::user();
         if($user->role == 'admin'){
             return redirect()->route('tamu')
-            ->with('success', 'Kamu menunggu kunjungan anda!');
+            ->with('success', 'Berhasil Dibatalkan!');
         }else{
             return redirect()->route('tamu.show')
             ->with('success', 'Kamu menunggu kunjungan anda!');
@@ -142,10 +142,10 @@ class TamuController extends Controller
         $user = Auth::user();
         if($user->role == 'admin'){
             return redirect()->route('tamu')
-            ->with('success', 'Kamu menunggu kunjungan anda!');
+            ->with('success', 'Berhasil Diperbarui!');
         }else{
             return redirect()->route('tamu.show')
-            ->with('success', 'Kamu menunggu kunjungan anda!');
+            ->with('success', 'Terima kasih sudah berkunjung!');
         }
     } 
     public function showDetail($id)
@@ -157,4 +157,9 @@ class TamuController extends Controller
         ->first();
         return view('tamu.show', compact('tamu'));
     }
+    public function showToday(){
+        // $today = Tamu::whereDate('jadwal_temu', Carbon::now()->format('Y-m-d'));
+        
+    }
+    
 }

@@ -7,7 +7,7 @@
     <div class="row justify-content-center">
         <div class="col-md-9">
             <div class="card">
-                <div class="card-header">{{ __('Profil') }}</div>
+                <div class="card-header">{{ __('Buat Jadwal Kunjungan') }}</div>
 
                 <div class="card-body">
 
@@ -30,7 +30,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="instansi" class="col-md-4 col-form-label text-md-right">{{ __('instansi') }}</label>
+                            <label for="instansi" class="col-md-4 col-form-label text-md-right">{{ __('Dari Instansi mana anda berasal?') }}</label>
                             <div class="col-md-6">
                                 <input id="instansi" type="text" class="form-control{{ $errors->has('instansi') ? ' is-invalid' : '' }}" name="instansi" value="{{ old('instansi') }}" rows="3"></input>
 
@@ -54,7 +54,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="pegawai_id" class="col-md-4 col-form-label text-md-right">{{ __('Pegawai') }}</label>
+                            <label for="pegawai_id" class="col-md-4 col-form-label text-md-right">{{ __('Siapa yang ingin anda temui?') }}</label>
 
                             <div class="col-md-4">
                                 <select  id="pegawai_id" name='pegawai_id' class="form-control{{ $errors->has('pegawai_id') ? ' is-invalid' : '' }}" value="{{ old('pegawai_id') }}" required autofocus>
@@ -87,11 +87,6 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Kirim') }}
                                 </button>
-                            </div>
-                            <div class="float-right my-2">
-                                &nbsp;
-                                &nbsp;
-                                <a class="btn btn-success" href="{{ route('user.home') }}">Batal</a>
                             </div>
                         </div>
                     </form>

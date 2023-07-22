@@ -7,7 +7,7 @@
     <div class="row justify-content-center">
         <div class="col-md-9">
             <div class="card">
-                <div class="card-header">{{ __('Profil') }}</div>
+                <div class="card-header">{{ __('Data Pegawai') }}</div>
 
                 <div class="card-body">
 

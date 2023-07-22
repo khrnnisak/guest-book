@@ -103,10 +103,8 @@ class PegawaiController extends Controller
         
         if($pegawai != null){
             $pegawai->delete();
-            return redirect()->route('admin.pegawai.get')
+            return redirect()->route('pegawai')
                 ->with('success', 'Pegawai Berhasil Dihapus');
         }
-        return redirect()->route('admin.pegawai.get')
-            ->with('success', 'Pegawai Gagal Dihapus');
     }
 }

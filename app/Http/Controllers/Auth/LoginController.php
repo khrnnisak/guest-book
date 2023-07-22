@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use App\Models\User;
+
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -45,6 +48,15 @@ class LoginController extends Controller
             'email' => 'required|email',
             'password' => 'required',
         ]);
+        $user = User::where('email', $input['email'])->first();
+
+        if (!$user) {
+            // Email not registered
+            return redirect()->route('login')
+                ->withErrors(['email' => 'Email is not registered.'])
+                ->withInput($request->only('email'));
+        }
+    
         
         if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
         {
@@ -55,7 +67,8 @@ class LoginController extends Controller
             }
         }else{
             return redirect()->route('login')
-                ->with('error','Email Address And Password Are Wrong!');
+            ->withErrors(['password' => 'Incorrect password.'])
+            ->withInput($request->only('email'));
         }
     }
 }

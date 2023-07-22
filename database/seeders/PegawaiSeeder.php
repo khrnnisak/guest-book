@@ -16,32 +16,32 @@ class PegawaiSeeder extends Seeder
     {
         $pegawai = [
             [
-                'nama' => 'Aina',
+                'nama' => 'Aryo Kusuma',
                 'jabatan' => 'Manager',
                 'bidang_id' => '1'
             ],
             [
-                'nama' => 'Joe',
+                'nama' => 'Vivi Astutik',
                 'jabatan' => 'Manager',
                 'bidang_id' => '2'
             ],
             [
-                'nama' => 'Rue',
+                'nama' => 'Juna Firman',
                 'jabatan' => 'Manager',
                 'bidang_id' => '3'
             ],
             [
-                'nama' => 'Nou',
+                'nama' => 'Kirana Larasati',
                 'jabatan' => 'Manager',
                 'bidang_id' => '4'
             ],
             [
-                'nama' => 'Ran',
+                'nama' => 'Bagus Satria',
                 'jabatan' => 'Manager',
                 'bidang_id' => '5'
             ],
             [
-                'nama' => 'Khai',
+                'nama' => 'Yuni Islami',
                 'jabatan' => 'Manager',
                 'bidang_id' => '6'
             ],

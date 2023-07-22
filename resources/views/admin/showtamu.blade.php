@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-            <h4 class="card-title">Striped Table</h4>
+            <h4 class="card-title">Data Tamu</h4>
         @if ($message = Session::get('success'))
             <div class="alert alert-success">
                 <p>{{ $message }}</p>
