@@ -32,8 +32,8 @@ class HomeController extends Controller
     }
     public function admin(){
         
-        $tanggalSekarang = Carbon::now()->format('Y-m-d');
-        $today = Tamu::whereDate('jadwal_temu', $tanggalSekarang)->count();
+        // $tanggalSekarang = Carbon::now()->format('Y-m-d');
+        $today = Tamu::whereDate('jadwal_temu', Carbon::now()->format('Y-m-d'))->count();
         $belum = Tamu::where('status', 'Belum')->count();
         $sudah = Tamu::where('status', 'Sudah')->count();
         $batal = Tamu::where('status', 'Batal')->count();

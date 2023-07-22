@@ -34,6 +34,7 @@
                         <td>{{ $a->status }}</td>
                         @if( $a->status == 'Belum' )
                             <td>
+                            <a class="btn btn-success" href="{{ route('tamu.edit', $a->id) }}">Jadwalkan Ulang</a>
                                 <form action="{{ route('confirm', $a->id) }}" method="POST">
                                     @csrf
                                     @method('PUT')

@@ -20,7 +20,7 @@
                     <th>Pegawai</th>
                     <th>Keperluan</th>
                     <th>Status</th>
-                    <th></th>
+                    <th> </th>
                 </tr>
                 @foreach ($jadwal as $a)
                     <tr>

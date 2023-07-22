@@ -89,7 +89,7 @@ class TamuController extends Controller
      */
     public function edit($id)
     {
-        $tamu = DB::table('jadwal')->join()->where('id', $id)->first();
+        $tamu = DB::table('jadwal')->where('id', $id)->first();
         
         $pegawais =  Tamu::all();
         return view('user.update', compact( 'pegawais', 'tamu'));
