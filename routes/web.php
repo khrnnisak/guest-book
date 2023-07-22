@@ -24,31 +24,31 @@ Route::get('/', function () {
 Auth::routes();
 
 //Admin Routes
-Route::middleware(['auth', 'user-access:admin'])->group(function(){
-    Route::get('/admin',[HomeController::class, 'admin'])->name('admin.home');
-    Route::get('/admin/pegawai',[PegawaiController::class, 'show'])->name('pegawai');
-    Route::get('/admin/pegawai/create',[PegawaiController::class, 'create'])->name('pegawai.create');
-    Route::post('/admin/pegawai/add',[PegawaiController::class, 'store'])->name('pegawai.add');
-    Route::get('/admin/pegawai/edit/{id}',[PegawaiController::class, 'edit'])->name('pegawai.edit');
-    Route::post('/admin/pegawai/update/{id}',[PegawaiController::class, 'update'])->name('pegawai.update');
-    Route::delete('/admin/pegawai/delete/{id}',[PegawaiController::class, 'destroy'])->name('pegawai.delete');
-    Route::get('/admin/tamu',[TamuController::class, 'show'])->name('tamu');
-    Route::put('/admin/tamu/confirm/{id}',[TamuController::class, 'setConfirm'])->name('confirm');
-    Route::put('/admin/tamu/cancel/{id}',[TamuController::class, 'setCancel'])->name('cancel');
-    Route::get('/admin/tamu/{id}',[TamuController::class, 'showDetail'])->name('tamu.detail');
+Route::middleware(['auth', 'user-access:admin'])->prefix('/admin')->group(function(){
+    Route::get('/',[HomeController::class, 'admin'])->name('admin.home');
+    Route::get('/pegawai',[PegawaiController::class, 'show'])->name('pegawai');
+    Route::get('/pegawai/create',[PegawaiController::class, 'create'])->name('pegawai.create');
+    Route::post('/pegawai/add',[PegawaiController::class, 'store'])->name('pegawai.add');
+    Route::get('/pegawai/edit/{id}',[PegawaiController::class, 'edit'])->name('pegawai.edit');
+    Route::post('/pegawai/update/{id}',[PegawaiController::class, 'update'])->name('pegawai.update');
+    Route::delete('/pegawai/delete/{id}',[PegawaiController::class, 'destroy'])->name('pegawai.delete');
+    Route::get('/tamu',[TamuController::class, 'show'])->name('tamu');
+    Route::put('/tamu/confirm/{id}',[TamuController::class, 'setConfirm'])->name('confirm');
+    Route::put('/tamu/cancel/{id}',[TamuController::class, 'setCancel'])->name('cancel');
+    Route::get('/tamu/{id}',[TamuController::class, 'showDetail'])->name('tamu.detail');
 });
 
 //User Routes
-Route::middleware(['auth', 'user-access:user'])->group(function(){
-    Route::get('/users',[HomeController::class, 'index'])->name('user.home');
-    Route::get('/users/tamu',[TamuController::class, 'show'])->name('tamu.show');
-    Route::get('/users/tamu/create',[TamuController::class, 'create'])->name('tamu.create');
-    Route::post('/users/tamu/add',[TamuController::class, 'store'])->name('tamu.add');
-    Route::get('/users/tamu/edit/{id}',[TamuController::class, 'edit'])->name('tamu.edit');
-    Route::post('/users/tamu/update/{id}',[TamuController::class, 'update'])->name('tamu.update');
-    Route::put('/users/tamu/confirm/{id}',[TamuController::class, 'setConfirm'])->name('tamu.confirm');
-    Route::put('/users/tamu/cancel/{id}',[TamuController::class, 'setCancel'])->name('tamu.cancel');
-    Route::get('/users/tamu/{id}',[TamuController::class, 'showDetail'])->name('tamu.show-detail');
+Route::middleware(['auth', 'user-access:user'])->prefix('/users')->group(function(){
+    Route::get('/',[HomeController::class, 'index'])->name('user.home');
+    Route::get('/tamu',[TamuController::class, 'show'])->name('tamu.show');
+    Route::get('/tamu/create',[TamuController::class, 'create'])->name('tamu.create');
+    Route::post('/tamu/add',[TamuController::class, 'store'])->name('tamu.add');
+    Route::get('/tamu/edit/{id}',[TamuController::class, 'edit'])->name('tamu.edit');
+    Route::post('/tamu/update/{id}',[TamuController::class, 'update'])->name('tamu.update');
+    Route::put('/tamu/confirm/{id}',[TamuController::class, 'setConfirm'])->name('tamu.confirm');
+    Route::put('/tamu/cancel/{id}',[TamuController::class, 'setCancel'])->name('tamu.cancel');
+    Route::get('/tamu/{id}',[TamuController::class, 'showDetail'])->name('tamu.show-detail');
 });
 
 

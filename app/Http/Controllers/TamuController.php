@@ -157,9 +157,4 @@ class TamuController extends Controller
         ->first();
         return view('tamu.show', compact('tamu'));
     }
-    public function showToday(){
-        // $today = Tamu::whereDate('jadwal_temu', Carbon::now()->format('Y-m-d'));
-        
-    }
-    
 }

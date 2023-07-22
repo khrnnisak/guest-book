@@ -30,20 +30,21 @@ class HomeController extends Controller
     public function index()
     {
         $user = Auth::user()->id;
-        $today = Tamu::whereDate('jadwal_temu', Carbon::now()->format('Y-m-d'))->where('user_id', $user)->count();
+        $today = Tamu::whereDate('jadwal_temu', Carbon::now()->format('Y-m-d'))->where('user_id', $user)->where('status', 'Belum')->count();
         $total = Tamu::where('user_id', $user)->count();
         return view('user.home', compact('today', 'total'));
     }
     public function admin(){
         
         // $tanggalSekarang = Carbon::now()->format('Y-m-d');
-        $today = Tamu::whereDate('jadwal_temu', Carbon::now()->format('Y-m-d'))->count();
+        $today = Tamu::whereDate('jadwal_temu', Carbon::now()->format('Y-m-d'))->where('status', 'Belum')->count();
         $belum = Tamu::where('status', 'Belum')->count();
         $sudah = Tamu::where('status', 'Sudah')->count();
         $batal = Tamu::where('status', 'Batal')->count();
         $paginate = Tamu::orderBy('jadwal_temu', 'asc')->paginate(5);
             $jadwal = Tamu::join('pegawai', 'pegawai.id', '=', 'jadwal.pegawai_id')
                 ->whereDate('jadwal_temu', Carbon::now()->format('Y-m-d'))
+                ->where('status', 'Belum')
                 ->get(['jadwal.*', 'pegawai.nama']);
             return view('admin.home', compact('jadwal', 'paginate','today','belum', 'sudah', 'batal'));
     }
