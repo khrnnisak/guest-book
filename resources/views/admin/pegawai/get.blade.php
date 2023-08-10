@@ -9,13 +9,12 @@
                 <p>{{ $message }}</p>
             </div>
         @endif
-        
         <div class="float-right my-2">
             &nbsp;
             &nbsp;
             <a class="btn btn-success" href="{{ route('pegawai.create') }}">Tambah Pegawai</a>
         </div>
-
+        
         @if ($pegawai)
             <table class="table table-bordered">
                 <tr>
@@ -36,7 +35,7 @@
                             <form action="{{ route('pegawai.delete', $a->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                            <button type="submit" class="btn btn-danger"
+                                <button type="submit" class="btn btn-danger"
                                 onclick="return confirm('yakin?');">Delete</button>
                             </form>
                         </td>

@@ -8,15 +8,19 @@ use App\Models\Pegawai;
 use App\Models\Bidang;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
+use Yajra\DataTables\Facades\DataTables;
 
 class PegawaiController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request) 
     {
-        return view('admin.pegawai.get');
+        $data = Pegawai::join('bidang', 'bidang.id', '=', 'pegawai.bidang_id')
+        ->orderBy('pegawai.nama', 'asc')
+        ->get(['pegawai.*', 'bidang.name']);
+        return view('admin.pegawai.index', compact('data'));
     }
 
     /**

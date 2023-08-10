@@ -24,31 +24,38 @@ Route::get('/', function () {
 Auth::routes();
 
 //Admin Routes
-Route::middleware(['auth', 'user-access:admin'])->prefix('/admin')->group(function(){
+Route::middleware(['auth', 'user-access:admin'])->prefix('admin')->group(function(){
     Route::get('/',[HomeController::class, 'admin'])->name('admin.home');
-    Route::get('/pegawai',[PegawaiController::class, 'show'])->name('pegawai');
-    Route::get('/pegawai/create',[PegawaiController::class, 'create'])->name('pegawai.create');
-    Route::post('/pegawai/add',[PegawaiController::class, 'store'])->name('pegawai.add');
-    Route::get('/pegawai/edit/{id}',[PegawaiController::class, 'edit'])->name('pegawai.edit');
-    Route::post('/pegawai/update/{id}',[PegawaiController::class, 'update'])->name('pegawai.update');
-    Route::delete('/pegawai/delete/{id}',[PegawaiController::class, 'destroy'])->name('pegawai.delete');
-    Route::get('/tamu',[TamuController::class, 'show'])->name('tamu');
-    Route::put('/tamu/confirm/{id}',[TamuController::class, 'setConfirm'])->name('confirm');
-    Route::put('/tamu/cancel/{id}',[TamuController::class, 'setCancel'])->name('cancel');
-    Route::get('/tamu/{id}',[TamuController::class, 'showDetail'])->name('tamu.detail');
+    Route::controller(PegawaiController::class)->prefix('/pegawai')->group(function(){
+        Route::get('/', 'show')->name('pegawai');
+        Route::get('/create','create')->name('pegawai.create');
+        Route::get('/edit/{id}','edit')->name('pegawai.edit');
+        Route::post('/add','store')->name('pegawai.add');
+        Route::post('/update/{id}','update')->name('pegawai.update');
+        Route::delete('/delete/{id}','destroy')->name('pegawai.delete');
+    });
+    Route::controller(TamuController::class)->prefix('/tamu')->group(function(){
+        Route::get('/','show')->name('tamu');
+        Route::put('/confirm/{id}','setConfirm')->name('confirm');
+        Route::put('/cancel/{id}','setCancel')->name('cancel');
+        Route::get('/show/{id}','showDetail')->name('tamu.detail');
+    });
 });
 
 //User Routes
-Route::middleware(['auth', 'user-access:user'])->prefix('/users')->group(function(){
+Route::middleware(['auth', 'user-access:user'])->prefix('users')->group(function(){
     Route::get('/',[HomeController::class, 'index'])->name('user.home');
-    Route::get('/tamu',[TamuController::class, 'show'])->name('tamu.show');
-    Route::get('/tamu/create',[TamuController::class, 'create'])->name('tamu.create');
-    Route::post('/tamu/add',[TamuController::class, 'store'])->name('tamu.add');
-    Route::get('/tamu/edit/{id}',[TamuController::class, 'edit'])->name('tamu.edit');
-    Route::post('/tamu/update/{id}',[TamuController::class, 'update'])->name('tamu.update');
-    Route::put('/tamu/confirm/{id}',[TamuController::class, 'setConfirm'])->name('tamu.confirm');
-    Route::put('/tamu/cancel/{id}',[TamuController::class, 'setCancel'])->name('tamu.cancel');
-    Route::get('/tamu/{id}',[TamuController::class, 'showDetail'])->name('tamu.show-detail');
+    Route::controller(TamuController::class)->prefix('/tamu')->group(function(){
+        Route::get('/','show')->name('tamu.show');
+        Route::get('/create','create')->name('tamu.create');
+        Route::post('/add','store')->name('tamu.add');
+        Route::get('/edit/{id}','edit')->name('tamu.edit');
+        Route::post('/update/{id}','update')->name('tamu.update');
+        Route::put('/confirm/{id}','setConfirm')->name('tamu.confirm');
+        Route::put('/cancel/{id}','setCancel')->name('tamu.cancel');
+        Route::get('/show/{id}','showDetail')->name('tamu.show-detail');
+    });
+   
 });
 
 
